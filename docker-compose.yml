@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  developerapi:
+    image: ${DOCKER_REGISTRY-}developerapi
+    build:
+      context: .
+      dockerfile: DeveloperAPI\Dockerfile
+    ports:
+        - "80:8080"

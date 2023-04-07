@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "composeLaunchAction": "LaunchBrowser",
+      "composeLaunchServiceName": "developerapi",
+      "composeLaunchUrl": "{Scheme}://{ServiceIPAddress}{ServicePort}/swagger",
+      "serviceActions": {
+        "developerapi": "StartDebugging"
+      }
+    }
+  }
+}
