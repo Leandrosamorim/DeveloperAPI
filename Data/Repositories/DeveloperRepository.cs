@@ -52,7 +52,10 @@ namespace Data.Repositories
 
         public async Task<Developer> Login(string userName, string password)
         {
-            var dev = _context.Developer.Where(x => x.Login == userName && x.Password == password).FirstOrDefault();
+            var dev = _context.Developer.Where(x => x.Login == userName).FirstOrDefault();
+            if (dev != null)
+                return BCrypt.Net.BCrypt.Verify(password, dev.Password) ? dev : null ;
+                
             return dev;
         }
 

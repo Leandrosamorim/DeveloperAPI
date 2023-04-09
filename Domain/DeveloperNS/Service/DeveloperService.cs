@@ -21,7 +21,7 @@ namespace Domain.DeveloperNS.Service
 
         public Task<Developer> Create(RegisterDeveloperCmd developer)
         {
-            var dev = new Developer() { Name= developer.Name, Contact = developer.Contact, Login = developer.Login, Password = developer.Password, StackId = developer.StackId };
+            var dev = DeveloperFactory.CreateDeveloper(developer.Name, developer.Contact, developer.StackId, developer.Login, developer.Password);
             return _developerRepository.Create(dev);
         }
 
