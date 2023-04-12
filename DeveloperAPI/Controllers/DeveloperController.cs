@@ -14,7 +14,7 @@ namespace DeveloperAPI.Controllers
     [ApiController]
     public class DeveloperController : ControllerBase
     {
-        private IDeveloperService _developerService;
+        private readonly IDeveloperService _developerService;
 
         public DeveloperController(IDeveloperService developerService)
         {

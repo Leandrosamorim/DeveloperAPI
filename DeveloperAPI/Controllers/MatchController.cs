@@ -10,7 +10,7 @@ namespace DeveloperAPI.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
-        private IMatchHttpService _matchHttpService;
+        private readonly IMatchHttpService _matchHttpService;
 
         public MatchController( IMatchHttpService matchHttpService)
         {

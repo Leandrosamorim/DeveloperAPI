@@ -16,8 +16,8 @@ namespace DeveloperAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        public IConfiguration _configuration;
-        private IDeveloperService _developerService;
+        private readonly IConfiguration _configuration;
+        private readonly IDeveloperService _developerService;
 
         public AuthController(IConfiguration configuration, IDeveloperService developerService)
         {
