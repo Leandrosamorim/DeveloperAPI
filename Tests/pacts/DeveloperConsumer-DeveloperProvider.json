@@ -1,0 +1,49 @@
+{
+  "consumer": {
+    "name": "DeveloperConsumer"
+  },
+  "interactions": [
+    {
+      "description": "A PUT to update a developer with no issues",
+      "providerStates": [
+        {
+          "name": "There is a Developer with the uId '91bc91a6-95be-4d68-a781-ce2b7682db5c'"
+        }
+      ],
+      "request": {
+        "body": {
+          "contact": {
+            "email": "string",
+            "phone": "string"
+          },
+          "login": "string",
+          "name": "string",
+          "password": "string",
+          "stackId": 0
+        },
+        "headers": {
+          "Accept": "application/json",
+          "Authorization": "Bearer Token",
+          "Content-Type": "application/json"
+        },
+        "method": "PUT",
+        "path": "/api/Developer"
+      },
+      "response": {
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.4.0",
+      "models": "1.0.4"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "DeveloperProvider"
+  }
+}

@@ -47,6 +47,8 @@ namespace Data.Repositories
         {
             return await _context.Developer
                 .Where(x => (x.UId != Guid.Empty && query.UId.Contains(x.UId)) || (x.StackId == query.StackId && query.StackId > 0))
+                .Include(x => x.Contact)
+                .Include(x => x.Stack)
                 .Select(x => new DeveloperContact() { UId = x.UId, Name = x.Name, StackName = x.Stack.StackName, Contact = x.Contact })
                 .ToListAsync();
         }

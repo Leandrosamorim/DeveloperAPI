@@ -7,22 +7,27 @@ using Domain.HttpService.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace IoC
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
         {
-            services.AddDbContext<DeveloperDBContext>(option => option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IDeveloperRepository, DeveloperRepository>();
             services.AddScoped<IDeveloperService, DeveloperService>();
             services.AddTransient<IMatchHttpService, MatchHttpService>();
+
+            if(environment.IsDevelopment() || environment.IsProduction())
+            {
+                services.AddDbContext<DeveloperDBContext>(option => option.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                services.AddDbContext<DeveloperDBContext>(options => options.UseInMemoryDatabase("DeveloperContext"));
+            }
             return services;
         }
     }
