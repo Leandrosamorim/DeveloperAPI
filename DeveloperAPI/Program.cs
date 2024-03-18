@@ -6,6 +6,8 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Domain.HttpService.Interfaces;
 using Domain.HttpService;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ builder.Services.AddInfrastructure(builder.Configuration, builder.Environment);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("MatchAPI", b => b.WithOrigins(builder.Configuration.GetValue<string>("MatchAPI")).AllowAnyHeader().AllowAnyMethod());
+    options.AddPolicy("AllowSpecificOrigin", b => b.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build());
 });
 
 builder.Services.AddHttpClient<IMatchHttpService, MatchHttpService>(client => {
@@ -77,12 +80,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.UseCors();
+app.UseCors("AllowSpecificOrigin");
+app.UseHttpsRedirection();
 
 
 app.Run();

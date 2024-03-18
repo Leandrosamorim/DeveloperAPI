@@ -51,13 +51,19 @@ namespace DeveloperAPI.Controllers
             
         }
 
-        [EnableCors("MatchAPI")]
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet]
         [Route("contact")]
         public async Task<IActionResult> GetWithContact([FromQuery] DeveloperQuery query)
         {
             try
             {
+                if (query.StackId == null && query.UId == null)
+                    query = new DeveloperQuery()
+                    {
+                        UId = new List<Guid> { Guid.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UId")?.Value) }
+                    };
+
                 var devs = await _developerService.GetWithContact(query);
                 return Ok(devs);
             }

@@ -3,6 +3,7 @@ using Domain.DeveloperNS;
 using Domain.DeveloperNS.Command;
 using Domain.DeveloperNS.Interface;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -27,6 +28,7 @@ namespace DeveloperAPI.Controllers
 
 
         [HttpPost]
+        [EnableCors("AllowSpecificOrigin")]
         [AllowAnonymous]
         public async Task<IActionResult> Post(DeveloperLoginCmd cmd)
         {

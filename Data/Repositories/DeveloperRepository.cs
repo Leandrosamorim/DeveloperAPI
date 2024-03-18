@@ -20,7 +20,7 @@ namespace Data.Repositories
         public async Task<Developer> Create(Developer developer)
         {
             await _context.Developer.AddAsync(developer);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return developer;
         }
 
@@ -64,7 +64,9 @@ namespace Data.Repositories
 
         public async Task<Developer> Update(Developer developer)
         {
-            _context.Developer.Update(developer);
+            var devStup = new Developer() { UId = developer.UId};
+            _context.Developer.Attach(devStup);
+            _context.Developer.Entry(devStup).CurrentValues.SetValues(developer);
             await _context.SaveChangesAsync();
             return developer;
         }

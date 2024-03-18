@@ -15,7 +15,5 @@ namespace Domain.DeveloperNS.Command
         public string Name { get; set; }
         public Contact Contact { get; set; }
         public int StackId { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
     }
 }

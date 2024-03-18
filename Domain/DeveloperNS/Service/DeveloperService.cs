@@ -52,7 +52,7 @@ namespace Domain.DeveloperNS.Service
 
         public Task<Developer> Update(UpdateDeveloperCmd developer)
         {
-            var dev = new Developer() { UId = developer.UId, Name = developer.Name, Contact = developer.Contact, StackId= developer.StackId, Login = developer.Login, Password = developer.Password };
+            var dev = new Developer() { UId = developer.UId, Name = developer.Name, Contact = developer.Contact, StackId= developer.StackId};
             return _developerRepository.Update(dev);
         }
     }
