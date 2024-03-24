@@ -35,7 +35,7 @@ namespace DeveloperAPI.Controllers
                 return BadRequest(ex);
             }
         }
-        [EnableCors("MatchAPI")]
+        [EnableCors("AllowSpecificOrigin")]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery]DeveloperQuery query)
         {
